@@ -21,3 +21,4 @@ int main (void)
         printf("\n");
     }
 }
+// esse código não funciona fora do ambiente do CS50

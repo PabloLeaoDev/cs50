@@ -53,5 +53,4 @@ float div(float a, float b)
 {
     return a / b;
 }
-
 // esse código não funciona fora do ambiente do CS50
