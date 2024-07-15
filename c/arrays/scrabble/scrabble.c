@@ -15,7 +15,7 @@ int main(void)
         alphabet[i] = 'a' + i;
     }
     char name[] = "Pablo";
-    char name1[] = "Raimundo";
+    char name1[] = "Pablo!";
     int sum = takeSum(name);
     int sum1 = takeSum(name1);
     printf("A soma da string \"%s\" é %i\n", name, sum);
