@@ -3,16 +3,31 @@
 #include <ctype.h>
 // #include <cs50.h>
 
-double getGrade(char text[]);
+int getGrade(char text[]);
 
 int main(void) 
 {
-    char text[] = "One fish. Two fish. Red fish. Blue fish.";
-    double grade = getGrade(text);
-    printf("%f\n", grade);
+    char text[] = "When he was nearly thirteen, my brother Jem got his arm badly broken at the elbow. When it healed, and Jem's fears of never being able to play football were assuaged, he was seldom self-conscious about his injury. His left arm was somewhat shorter than his right; when he stood or walked, the back of his hand was at right angles to his body, his thumb parallel to his thigh.";
+    int grade = getGrade(text);
+    
+    if (grade >= 1 && grade <= 16)
+    {
+        printf("Grade %i\n", grade);
+    }
+    else 
+    {
+        if (grade < 1)
+        {
+            printf("Before Grade 1\n");
+        }
+        else
+        {
+            printf("Grade 16+\n");
+        }
+    }
 }
 
-double getGrade(char text[])
+int getGrade(char text[])
 {
     int letters = 0;
     int words = 1;
@@ -30,7 +45,6 @@ double getGrade(char text[])
             {
                 sentences++;
             }
-            
         }
         else
         {
@@ -43,11 +57,11 @@ double getGrade(char text[])
     // S é a média do número de frases a cada 100 palavras
     double S = (double) sentences / words * 100;
 
-    printf("%i\n", letters);
-    printf("%i\n", words);
-    printf("%i\n", sentences);
-    printf("%f\n", L);
-    printf("%f\n", S);
     double index = 0.0588 * L - 0.296 * S - 15.8;
-    return index;
+    int indexInt = index;
+    if ((index - (double) indexInt) > 0.5)
+    {
+        indexInt += 1;
+    }
+    return indexInt;
 }
