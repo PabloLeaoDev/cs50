@@ -2,7 +2,6 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
-// #include <cs50.h>
 
 #define FIXED_LEN 26
 
@@ -36,6 +35,37 @@ int main(int argc, char *argv[])
             printf("Key must not contain letters repetition.\n");
             return 1;
         }
+        char input[30];
+        printf("plaintext:  ");
+        scanf("%29s", input);
+        char output[30];
+
+        int abIndex;
+        char toEncrypt;
+        for (int i = 0, n = strlen(input); i < n; i++)
+        {
+            char inputUpper = toupper(input[i]);
+            if (inputUpper >= alphabet[0] && inputUpper <= alphabet[25])
+            {
+                if (isupper(input[i]))
+                {
+                    abIndex = inputUpper - alphabet[0];
+                    toEncrypt = toupper(argv[1][abIndex]);
+                    output[i] = toEncrypt;
+                }
+                else
+                {
+                    abIndex = inputUpper - alphabet[0];
+                    toEncrypt = tolower(argv[1][abIndex]);
+                    output[i] = toEncrypt;
+                }
+            }
+            else
+            {
+                output[i] = input[i];
+            }
+        }
+        printf("ciphertext: %s", output);
     }
     else
     {
@@ -49,7 +79,7 @@ bool findNonAlphabetic(char prompt[])
     for (int i = 0; i < FIXED_LEN; i++)
     {
         char upperPrompt = toupper(prompt[i]);
-        if (upperPrompt < 'A' || upperPrompt > 'Z')
+        if (upperPrompt < alphabet[0] || upperPrompt > alphabet[25])
         {
             return true;
         }
@@ -63,11 +93,11 @@ bool findRepeatedLetter(char prompt[])
     for (int i = 1; i < FIXED_LEN; i++)
     {
         char upperPrompt = toupper(prompt[i]);
-        if (newPromptArray[upperPrompt - 'A'] == 1)
+        if (newPromptArray[upperPrompt - alphabet[0]] == 1)
         {
             return true;
         }
-        newPromptArray[upperPrompt - 'A'] = 1;
+        newPromptArray[upperPrompt - alphabet[0]] = 1;
     }
     return false;
 }
