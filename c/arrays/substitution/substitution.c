@@ -9,9 +9,9 @@ bool findNonAlphabetic(char prompt[]);
 bool findRepeatedLetter(char prompt[]);
 
 const char alphabet[FIXED_LEN] = {
-        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-    };
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+};
 
 int main(int argc, char *argv[])
 {
@@ -35,10 +35,10 @@ int main(int argc, char *argv[])
             printf("Key must not contain letters repetition.\n");
             return 1;
         }
-        char input[30];
+        char input[99];
         printf("plaintext:  ");
-        scanf("%29s", input);
-        char output[30];
+        fgets(input, sizeof(input), stdin);
+        char output[99];
 
         int abIndex;
         char toEncrypt;
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
                 output[i] = input[i];
             }
         }
-        printf("ciphertext: %s", output);
+        printf("ciphertext: %s\n", output);
     }
     else
     {
